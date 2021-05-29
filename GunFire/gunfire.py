@@ -34,16 +34,28 @@ pen.penup()
 pen.hideturtle()
 pen.write("Press the Space bar to fire a bullet", align="center", font=("Courier",24,"normal"))
 
+close = turtle.Turtle()
+close.speed(0)
+close.color("white")
+close.penup()
+close.hideturtle()
+close.goto(350, -250)
+close.write("Press Q to quit", align="center", font=("Courier",24,"normal"))
+
 def fire():
     bullet.goto(gun.xcor()-40, gun.ycor())
     global bullet_count
     bullet_count = bullet_count + 1
     pen.clear()
-    pen.goto(350, -200)
+    pen.goto(320, -200)
     pen.write(f"Score: {score}, bullets used: {bullet_count}", align="center", font=("Courier",24,"normal"))
+
+def closewindow():
+    wn.bye()
 
 wn.listen()
 wn.onkeypress(fire, "space")
+wn.onkeypress(closewindow, "q")
 
 while True:
     wn.update()
@@ -60,7 +72,7 @@ while True:
         wall_one.goto(-100,250)
         score = score + 1
         pen.clear()
-        pen.goto(350, -200)
+        pen.goto(320, -200)
         pen.write(f"Score: {score}, bullets used: {bullet_count}", align="center", font=("Courier",24,"normal"))
     if (bullet.xcor() > -130 and bullet.xcor() < -70) and (wall_one.ycor() > -30 and wall_one.ycor() < 30) and wall_one.xcor() == -100:
         wall_one.goto(-400,250)
